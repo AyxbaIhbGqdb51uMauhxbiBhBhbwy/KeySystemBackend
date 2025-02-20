@@ -56,11 +56,11 @@ def check_key():
         expired_time = generated_keys[key]
         expired_in = calculate_expired_in_hours(expired_time)
         if expired_in > 0:
-            return jsonify({"status": "key is valid", "expired_in": f"{expired_in} hours"})
+            return jsonify({"status": "valid", "expired_in": f"{expired_in} hours"})
         else:
-            return jsonify({"status": "key is invalid", "message": "Key has expired."}), 404
+            return jsonify({"status": "invalid", "message": "Key has expired."}), 404
     else:
-        return jsonify({"status": "key is invalid", "message": "Key not found."}), 404
+        return jsonify({"status": "error", "message": "Key not found."}), 404
 
 @app.route('/data', methods=['GET'])
 def get_data():
